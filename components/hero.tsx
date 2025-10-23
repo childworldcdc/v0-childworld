@@ -1,0 +1,91 @@
+"use client"
+
+import { useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Sparkles } from "lucide-react"
+
+export default function Hero() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.gsap) {
+      const gsap = window.gsap
+      const ScrollTrigger = window.ScrollTrigger
+
+      gsap.registerPlugin(ScrollTrigger)
+
+      gsap.from(".hero-content", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.2,
+      })
+
+      gsap.from(".hero-image", {
+        opacity: 0,
+        x: 30,
+        duration: 0.8,
+        delay: 0.4,
+      })
+    }
+  }, [])
+
+  return (
+    <section
+      id="home"
+      className="relative py-20 md:py-32 bg-gradient-to-br from-primary/15 via-background to-accent/8 overflow-hidden"
+    >
+      <div className="absolute top-10 left-10 w-20 h-20 bg-primary/10 rounded-full blur-2xl animate-float"></div>
+      <div
+        className="absolute bottom-20 right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-float"
+        style={{ animationDelay: "1s" }}
+      ></div>
+      <div
+        className="absolute top-1/2 right-1/4 w-16 h-16 bg-secondary/10 rounded-full blur-2xl animate-float"
+        style={{ animationDelay: "2s" }}
+      ></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-6 hero-content">
+            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Welcome to Childworld</span>
+            </div>
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                Nurturing Young Minds
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Childworld is a specialized mental health clinic dedicated to supporting children and adolescents
+                through their emotional and psychological journey. We create a safe, welcoming space where every child
+                can thrive.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                Book a Session <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary/5 bg-transparent"
+              >
+                Learn More
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="relative h-96 md:h-full hero-image">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/25 to-accent/25 rounded-2xl"></div>
+            <img
+              src="/children-playing-and-smiling-in-a-safe-welcoming-e.jpg"
+              alt="Children in a welcoming environment"
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

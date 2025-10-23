@@ -1,0 +1,109 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+
+export default function MapSection() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.gsap && sectionRef.current) {
+      const gsap = window.gsap
+      const ScrollTrigger = window.ScrollTrigger
+
+      gsap.registerPlugin(ScrollTrigger)
+
+      gsap.from(".map-container", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center",
+          toggleActions: "play none none none",
+        },
+      })
+
+      gsap.from(".location-card", {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "center center",
+          toggleActions: "play none none none",
+        },
+      })
+    }
+  }, [])
+
+  return (
+    <section
+      id="map"
+      className="py-20 md:py-32 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden"
+      ref={sectionRef}
+    >
+      <div
+        className="absolute top-20 right-20 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-float"
+        style={{ animationDelay: "0.6s" }}
+      ></div>
+      <div
+        className="absolute bottom-40 left-20 w-28 h-28 bg-primary/10 rounded-full blur-2xl animate-float"
+        style={{ animationDelay: "1.0s" }}
+      ></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Find Us</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Visit our welcoming clinic located in the heart of the community. We're easy to find and accessible by
+            public transportation.
+          </p>
+        </div>
+
+        {/* Map Container */}
+        <div className="map-container rounded-2xl overflow-hidden border border-border shadow-lg h-96 md:h-[500px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567890!2d-74.0060!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3855555%3A0x1234567890abcdef!2s123%20Wellness%20Avenue!5e0!3m2!1sen!2sus!4v1234567890"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Childworld Clinic Location"
+          ></iframe>
+        </div>
+
+        {/* Location Details */}
+        <div className="grid md:grid-cols-3 gap-6 mt-12">
+          <div className="location-card bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Address</h3>
+            <p className="text-muted-foreground">
+              123 Wellness Avenue
+              <br />
+              Healing City, HC 12345
+            </p>
+          </div>
+          <div className="location-card bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Parking</h3>
+            <p className="text-muted-foreground">
+              Free parking available
+              <br />
+              Accessible spaces provided
+            </p>
+          </div>
+          <div className="location-card bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Transit</h3>
+            <p className="text-muted-foreground">
+              Bus routes 5, 12, 18
+              <br />
+              Train station nearby
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
