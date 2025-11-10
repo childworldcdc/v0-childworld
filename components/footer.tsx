@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { Instagram } from "lucide-react"
 
 export default function Footer() {
   const footerRef = useRef(null)
@@ -150,38 +150,18 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
           <p className="text-muted-foreground text-xs md:text-sm text-center md:text-left">
-            &copy; {currentYear} <span className="text-primary">Child</span> <span className="text-accent">World</span> Mental Health Clinic. All rights reserved.
+            &copy; {currentYear} <span className="text-primary">Child</span> <span className="text-accent">World</span> Child Development Center. All rights reserved.
           </p>
 
           {/* Social Links */}
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-muted-foreground hidden sm:inline">Connect with us on</span>
             <a
-              href="#"
-              className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
-              className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-              aria-label="Twitter"
-            >
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
+              href="https://www.instagram.com/child.world.cdc/"
               className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
-              className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-4 h-4" />
             </a>
           </div>
 
