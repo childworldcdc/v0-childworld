@@ -48,22 +48,46 @@ export default function BookSession() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        childName: "",
-        parentName: "",
-        email: "",
-        phone: "",
-        serviceType: "individual-therapy",
-        preferredDate: "",
-        notes: "",
+    
+    // 1. Determine form type based on active tab
+    const payload = {
+      ...formData,
+      formType: activeTab === 'children' ? 'child_booking' : 'adult_booking'
+    }
+
+    try {
+      // 2. Send data to Google Apps Script
+      await fetch('https://script.google.com/macros/s/AKfycbxSqE7axntfuvZKf452V8rg4Vbo-IzH8ETgCMQCiZkL3QI_hIpU2IBtgdzOKZHq9GMxrQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
       })
-    }, 3000)
+
+      // 3. Handle success
+      console.log("Booking form submitted:", payload)
+      setSubmitted(true)
+      setTimeout(() => {
+        setSubmitted(false)
+        // Reset form to initial state
+        setFormData({
+          childName: "",
+          parentName: "",
+          email: "",
+          phone: "",
+          serviceType: "individual-therapy",
+          preferredDate: "",
+          notes: "",
+        })
+      }, 3000)
+    } catch (error) {
+      console.error("Error submitting booking:", error)
+      // Optionally set an error state here to show user feedback
+    }
   }
 
   return (

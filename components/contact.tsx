@@ -56,19 +56,43 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Contact form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    
+    // 1. Create the payload with a specific formType
+    const payload = {
+      ...formData,
+      formType: 'contact'
+    }
+
+    try {
+      // 2. Send data to Google Apps Script
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxSqE7axntfuvZKf452V8rg4Vbo-IzH8ETgCMQCiZkL3QI_hIpU2IBtgdzOKZHq9GMxrQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
       })
-    }, 3000)
+
+      // 3. Handle success state
+      console.log("Contact form submitted")
+      setSubmitted(true)
+      setTimeout(() => {
+        setSubmitted(false)
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        })
+      }, 3000)
+
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      // Optionally set an error state here to show user feedback
+    }
   }
 
   return (
