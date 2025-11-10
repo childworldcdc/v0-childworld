@@ -41,7 +41,7 @@ export default function Staff() {
     {
       name: "Dr. Vijay Sonavane",
       title: "MBBS, MD Pediatrics (2009), P.G.P.N USA",
-      specialization: "Pediatrics & Child Neurology"
+      specialization: "Pediatrician"
     },
   ]
 
