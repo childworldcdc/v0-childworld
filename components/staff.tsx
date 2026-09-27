@@ -53,6 +53,31 @@ export default function Staff() {
       title: "B.OT, (Developmental Disabilities)",
       specialization: "Occupational therapy"
     },
+    {
+      name: "Aman Gupta",
+      title: "MA Clinical Psychology",
+      specialization: "Clinical Psychology",
+    },
+    {
+      name: "Yukta M Heghiste",
+      title: "MA Clinical Psychology",
+      specialization: "Clinical Psychology",
+    },
+    {
+      name: "Aishwarya S Takalkaki",
+      title: "MA Psychology (Clinical Specialization), Part 2",
+      specialization: "Clinical Psychology",
+    },
+    {
+      name: "Ankita B Dadas",
+      title: "MA Psychology Part 1",
+      specialization: "Psychology",
+    },
+    {
+      name: "Aarya Rahane",
+      title: "MA Psychology (Clinical Specialization), Part 1",
+      specialization: "Clinical Psychology",
+    },
   ]
 
   return (
